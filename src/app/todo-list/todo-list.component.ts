@@ -17,7 +17,6 @@ export class TodoListComponent {
     }
 
     this.todos.push({name: value, isComplete: false});
-    console.log(this.todos)
   }
 
   clearErrorMSg() {
