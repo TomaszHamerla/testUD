@@ -20,13 +20,11 @@ export class TodoListComponent {
     console.log(this.todos)
   }
 
-  changeTodoStatus(todo: Todo) {
-    todo.isComplete = !todo.isComplete;
-
-    console.log(todo)
-  }
-
   clearErrorMSg() {
     this.errorMsg = '';
+  }
+
+  deleteTodo(i: number) {
+    this.todos = this.todos.filter((value, index) => index !== i)
   }
 }
