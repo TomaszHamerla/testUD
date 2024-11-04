@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Todo} from "../shared/interfaces/Todo";
 
 @Component({
@@ -6,18 +6,22 @@ import {Todo} from "../shared/interfaces/Todo";
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.css'
 })
-export class TodoListComponent {
+export class TodoListComponent implements OnInit {
   todos: Todo[] = [];
   errorMsg = '';
 
+  ngOnInit(): void {
+    this.todos = JSON.parse(localStorage.getItem('todos')!) ?? []
+  }
+
   addTodo(value: string): void {
-    if (value.length <=3) {
+    if (value.length <= 3) {
       this.errorMsg = 'Minimum 4 znaki';
       return;
     }
 
     this.todos.push({name: value, isComplete: false});
-    console.log(this.todos)
+    localStorage.setItem('todos', JSON.stringify(this.todos))
   }
 
   clearErrorMSg() {
@@ -26,5 +30,6 @@ export class TodoListComponent {
 
   deleteTodo(i: number) {
     this.todos = this.todos.filter((value, index) => index !== i)
+    localStorage.setItem('todos', JSON.stringify(this.todos))
   }
 }
