@@ -3,7 +3,8 @@
          [checked]="todo.isComplete"
          (change)="changeTodoStatus(todo)"
   >
-  <span [ngClass]="{'text-decoration-line-through': todo.isComplete}" class="todo-item">{{i + 1}}. {{todo.name}}</span>
+  <span [ngClass]="{'text-decoration-line-through': todo.isComplete}" class="todo-item">{{i + 1}}.
+    {{todo.name | firstLetterUppercase}}</span>
   <button type="button" class="btn btn-danger btn-sm mx-2" (click)="toggleModal()" >Usuń</button>
 </li>
   <app-modal *ngIf="openModal" (close)="toggleModal()" [title]="'Usunąć zadanie o nr: ' + (i+1)">
