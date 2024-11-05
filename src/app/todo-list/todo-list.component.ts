@@ -1,17 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Todo} from "../shared/interfaces/Todo";
+import {TodoService} from "../core/service/todo.service";
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.css'
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent {
   todos: Todo[] = [];
   errorMsg = '';
 
-  ngOnInit(): void {
-    this.todos = JSON.parse(localStorage.getItem('todos')!) ?? []
+  constructor(
+    private todoService: TodoService
+  ) {
+    this.todos= this.todoService.todos
   }
 
   addTodo(value: string): void {
@@ -19,9 +22,8 @@ export class TodoListComponent implements OnInit {
       this.errorMsg = 'Minimum 4 znaki';
       return;
     }
-
-    this.todos.push({name: value, isComplete: false});
-    localStorage.setItem('todos', JSON.stringify(this.todos))
+    this.todoService.addTodo(value);
+    this.todos = this.todoService.todos;
   }
 
   clearErrorMSg() {
@@ -29,7 +31,12 @@ export class TodoListComponent implements OnInit {
   }
 
   deleteTodo(i: number) {
-    this.todos = this.todos.filter((value, index) => index !== i)
-    localStorage.setItem('todos', JSON.stringify(this.todos))
+    this.todoService.deleteTodo(i);
+    this.todos = this.todoService.todos;
+  }
+
+  changeTodoStatus(index: number) {
+    this.todoService.changeTodoStatus(index);
+    this.todos = this.todoService.todos;
   }
 }

@@ -10,13 +10,12 @@ export class TodoComponent {
   @Input() todo!: Todo;
   @Input() i!: number;
   @Output() delete = new EventEmitter<void>;
+  @Output() changeStatus = new EventEmitter<number>;
 
   openModal = false;
 
-  changeTodoStatus(todo: Todo) {
-    todo.isComplete = !todo.isComplete;
-
-    console.log(todo)
+  changeTodoStatus() {
+    this.changeStatus.emit(this.i);
   }
 
   toggleModal() {
