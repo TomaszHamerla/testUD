@@ -18,12 +18,12 @@ export class ModalComponent implements OnInit, OnDestroy {
     // })
 
     /// TODO
-    if (this.sub) {
-      return;
-    }
-    this.sub = interval(500).subscribe({
-      next: val => console.log(val)
-    });
+    // if (this.sub) {
+    //   return;
+    // }
+    // this.sub = interval(500).subscribe({
+    //   next: val => console.log(val)
+    // });
   }
 
   ngOnDestroy(): void {
