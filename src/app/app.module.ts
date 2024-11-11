@@ -16,6 +16,7 @@ import { FirstLetterUppercasePipe } from './shared/pipes/first-letter-uppercase.
 import {FormsModule} from "@angular/forms";
 import { FirstLetterDirective } from './shared/validators/first-letter.directive';
 import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 registerLocaleData(localePl);
 
@@ -31,7 +32,8 @@ registerLocaleData(localePl);
     ModalComponent,
     FirstLetterUppercasePipe,
     FirstLetterDirective,
-    HomeComponent
+    HomeComponent,
+    PageNotFoundComponent
   ],
     imports: [
         BrowserModule,
