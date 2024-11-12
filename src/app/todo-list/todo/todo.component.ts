@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Todo} from "../../shared/interfaces/Todo";
+import {ActivatedRoute, NavigationExtras, Router} from "@angular/router";
 
 @Component({
   selector: 'app-todo',
@@ -14,6 +15,12 @@ export class TodoComponent {
 
   openModal = false;
 
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+  }
+
   changeTodoStatus() {
     this.changeStatus.emit(this.i);
   }
@@ -24,5 +31,12 @@ export class TodoComponent {
 
   deleteTodo() {
     this.delete.emit();
+  }
+
+  navigateToTodoDetails() {
+    const navigationExtras: NavigationExtras = {
+      relativeTo: this.route
+    }
+    this.router.navigate([this.i], navigationExtras);
   }
 }
