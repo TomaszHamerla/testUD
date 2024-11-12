@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Todo} from "../shared/interfaces/Todo";
 import {TodoService} from "../core/service/todo.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-todo-details',
@@ -16,7 +17,8 @@ export class TodoDetailsComponent implements OnInit{
   constructor(
     private todoService: TodoService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {
   }
 
@@ -34,5 +36,9 @@ export class TodoDetailsComponent implements OnInit{
 
   navigateToNextTodo() {
     this.router.navigate(['/todo', this.id + 1]);
+  }
+
+  navigateBack() {
+    this.location.back();
   }
 }

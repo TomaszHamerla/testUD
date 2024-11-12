@@ -5,7 +5,8 @@
     <p>Tresc zadania: {{todo.name}}</p>
     <p>Czy zadanie zostało ukończone: {{todo.isComplete ? 'tak' : 'nie'}}</p>
 
-    <p>Przejdź do kolejnego zadania</p>
-    <button class="btn btn-sm btn-info" (click)="navigateToNextTodo()">Następne zadanie</button>
+    <p>Przejdź do kolejnego zadania lub wroc</p>
+    <button class="btn btn-sm btn-info mx-2" (click)="navigateToNextTodo()">Następne zadanie</button>
+    <button class="btn btn-sm btn-info" (click)="navigateBack()">Wroc</button>
   </div>
 </div>
