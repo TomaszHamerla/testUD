@@ -40,9 +40,8 @@ export class TodoService {
     this.todoChanged.next(this._todos);
   }
 
-  deleteTodo(i: number) {
-    this._todos = this.todos.filter((value, index) => index !== i);
-    this.saveToLocaleStorage();
+  deleteTodo(id: number) {
+    this._todos = this.todos.filter((value, index) => value.id !== id);
     this.todoChanged.next(this._todos);
   }
 
