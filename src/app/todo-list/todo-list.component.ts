@@ -69,7 +69,6 @@ export class TodoListComponent implements OnInit, OnDestroy {
        this.errorMsg = 'Wystapil blad sproboj ponownie'
      }
    })
-    this.todoService.addTodo(value);
   }
 
   clearErrorMSg() {

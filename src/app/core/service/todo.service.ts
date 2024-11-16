@@ -26,9 +26,8 @@ export class TodoService {
     return this.todos[index];
   }
 
-  addTodo(name: string): void {
-    // this._todos.push({name, isComplete: false});
-    this.saveToLocaleStorage();
+  addTodo(todo: Todo): void {
+    this._todos.push(todo);
     this.todoChanged.next(this._todos);
   }
 
