@@ -3,6 +3,7 @@ import {Todo} from "../shared/interfaces/Todo";
 import {TodoService} from "../core/service/todo.service";
 import {interval, Subject, Subscription, takeUntil} from "rxjs";
 import {Title} from "@angular/platform-browser";
+import {TodoApiService} from "../core/service/todo-api.service";
 
 @Component({
   selector: 'app-todo-list',
@@ -19,7 +20,8 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   constructor(
     private todoService: TodoService,
-    private titleService: Title
+    private titleService: Title,
+    private todoApiService: TodoApiService
   ) {
     this.todos = this.todoService.todos
   }
@@ -28,6 +30,14 @@ export class TodoListComponent implements OnInit, OnDestroy {
     this.sub = this.todoService.todoChanged.subscribe({
       next: todos => this.todos = todos
     })
+
+    if (this.todos.length === 0) {
+      this.todoApiService.getTodos().subscribe({
+        // next: todos => {
+        //   this.todos = todos;
+        // }
+      })
+    }
   }
 
   startBlinking() {
