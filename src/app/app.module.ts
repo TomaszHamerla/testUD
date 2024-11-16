@@ -18,6 +18,7 @@ import { FirstLetterDirective } from './shared/validators/first-letter.directive
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TodoDetailsComponent } from './todo-details/todo-details.component';
+import {provideHttpClient} from "@angular/common/http";
 
 registerLocaleData(localePl);
 
@@ -42,7 +43,7 @@ registerLocaleData(localePl);
         AppRoutingModule,
         FormsModule
     ],
-  providers: [
+  providers: [provideHttpClient(),
     provideClientHydration(),
     { provide: LOCALE_ID, useValue: 'pl'}
   ],
