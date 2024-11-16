@@ -6,7 +6,7 @@
   <h4>Zadania</h4>
   <ng-container *ngFor="let todo of todos; index as i">
   <ul class="list-group-item" *ngIf="todos.length > 0" >
-    <app-todo (changeStatus)="changeTodoStatus($event)" [todo]="todo" [i]="i" (delete)="deleteTodo(i)"></app-todo>
+    <app-todo (changeStatus)="changeTodoStatus($event)" [todo]="todo" [i]="i" (delete)="deleteTodo(todo.id)"></app-todo>
   </ul>
   </ng-container>
 
