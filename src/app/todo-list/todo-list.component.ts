@@ -61,10 +61,14 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
 
   addTodo(value: string): void {
-    if (value.length <= 3) {
-      this.errorMsg = 'Minimum 4 znaki';
-      return;
-    }
+   this.todoApiService.postTodo({name: value, isComplete: false}).subscribe({
+     next: val => {
+       console.log(val)
+     },
+     error: err => {
+       this.errorMsg = 'Wystapil blad sproboj ponownie'
+     }
+   })
     this.todoService.addTodo(value);
   }
 
