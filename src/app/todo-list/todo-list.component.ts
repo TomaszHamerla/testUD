@@ -36,6 +36,9 @@ export class TodoListComponent implements OnInit, OnDestroy {
         // next: todos => {
         //   this.todos = todos;
         // }
+        error: err => {
+          this.errorMsg = 'Wystapil blad sproboj ponownie'
+        }
       })
     }
   }
