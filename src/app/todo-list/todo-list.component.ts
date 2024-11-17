@@ -4,6 +4,7 @@ import {TodoService} from "../core/service/todo.service";
 import {interval, Subject, Subscription, takeUntil} from "rxjs";
 import {Title} from "@angular/platform-browser";
 import {TodoApiService} from "../core/service/todo-api.service";
+import {log} from "util";
 
 @Component({
   selector: 'app-todo-list',
@@ -84,8 +85,13 @@ export class TodoListComponent implements OnInit, OnDestroy {
     })
   }
 
-  changeTodoStatus(index: number) {
-    this.todoService.changeTodoStatus(index);
+  changeTodoStatus(id: number, todo: Todo) {
+    //this.todoService.changeTodoStatus(index);
+    this.todoApiService.patchTodo(id, {isComplete: !todo.isComplete}).subscribe({
+      error: err => {
+        this.errorMsg = 'Wystapil blad sproboj ponownie'
+      }
+  })
   }
 
   ngOnDestroy(): void {

@@ -7,7 +7,7 @@ import {Subject} from "rxjs";
 })
 export class TodoService {
   //private _todos: Todo[] = JSON.parse(localStorage.getItem('todos')!) ?? []
-  private _todos: Todo[] =  []
+  private _todos: Todo[] = []
   todoChanged = new Subject<Todo[]>;
 
   constructor() {
@@ -31,12 +31,11 @@ export class TodoService {
     this.todoChanged.next(this._todos);
   }
 
-  changeTodoStatus(index: number) {
-    this._todos[index] = {
-      ...this._todos[index],
-      isComplete: !this._todos[index].isComplete
-    }
-    this.saveToLocaleStorage();
+  changeTodoStatus(id: number, isComplete: boolean) {
+    const searchedTodo = this.todos.find(todo => todo.id === id);
+   if (searchedTodo) {
+     searchedTodo.isComplete = isComplete;
+   }
     this.todoChanged.next(this._todos);
   }
 
@@ -45,7 +44,7 @@ export class TodoService {
     this.todoChanged.next(this._todos);
   }
 
-  saveToLocaleStorage() {
-    localStorage.setItem('todos', JSON.stringify(this.todos));
-  }
+  // saveToLocaleStorage() {
+  //   localStorage.setItem('todos', JSON.stringify(this.todos));
+  // }
 }
