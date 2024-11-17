@@ -1,7 +1,8 @@
 <div class="div mt-3">
-  <p *ngIf="!todo"> Brak zadania o podanym numerze</p>
 
-  <div *ngIf="todo">
+  <app-alert *ngIf="errorMsg" [errorMsg]="errorMsg" (clearMsg)="clearErrorMsh()"></app-alert>
+
+  <div *ngIf="todo && !errorMsg">
     <p>Tresc zadania: {{todo.name}}</p>
     <p>Czy zadanie zostało ukończone: {{todo.isComplete ? 'tak' : 'nie'}}</p>
 

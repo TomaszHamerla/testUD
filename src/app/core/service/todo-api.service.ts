@@ -21,6 +21,10 @@ export class TodoApiService {
     )
   }
 
+  getTodo(id: number): Observable<Todo> {
+    return this.http.get<Todo>(`${API_URL}/todos/${id}`);
+  }
+
   postTodo(todo: Omit<Todo, 'id'>): Observable<Todo> {
     return this.http.post<Todo>(`${API_URL}/todos`, todo).pipe(
       tap((todo) => this.todoService.addTodo(todo))

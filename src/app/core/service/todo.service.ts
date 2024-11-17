@@ -22,10 +22,6 @@ export class TodoService {
     this.todoChanged.next(this.todos);
   }
 
-  getTodo(index: number): Todo | undefined {
-    return this.todos[index];
-  }
-
   addTodo(todo: Todo): void {
     this._todos.push(todo);
     this.todoChanged.next(this._todos);
