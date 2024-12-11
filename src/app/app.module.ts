@@ -19,6 +19,7 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TodoDetailsComponent } from './todo-details/todo-details.component';
 import {provideHttpClient} from "@angular/common/http";
+import { StoreModule } from '@ngrx/store';
 
 registerLocaleData(localePl);
 
@@ -41,7 +42,8 @@ registerLocaleData(localePl);
     imports: [
         BrowserModule,
         AppRoutingModule,
-        FormsModule
+        FormsModule,
+        StoreModule.forRoot({})
     ],
   providers: [provideHttpClient(),
     provideClientHydration(),
