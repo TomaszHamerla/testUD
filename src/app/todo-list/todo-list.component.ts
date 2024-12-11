@@ -28,48 +28,48 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.sub = this.todoService.todoChanged.subscribe({
-      next: todos => this.todos = todos
-    })
-
-    if (this.todos.length === 0) {
-      this.todoApiService.getTodos().subscribe({
-        // next: todos => {
-        //   this.todos = todos;
-        // }
-        error: err => {
-          this.errorMsg = 'Wystapil blad sproboj ponownie'
-        }
-      })
-    }
+    // this.sub = this.todoService.todoChanged.subscribe({
+    //   next: todos => this.todos = todos
+    // })
+    //
+    // if (this.todos.length === 0) {
+    //   this.todoApiService.getTodos().subscribe({
+    //     // next: todos => {
+    //     //   this.todos = todos;
+    //     // }
+    //     error: err => {
+    //       this.errorMsg = 'Wystapil blad sproboj ponownie'
+    //     }
+    //   })
+    // }
   }
 
   startBlinking() {
-    this.stopBlinking$.next();
-    interval(1000)
-      .pipe(takeUntil(this.stopBlinking$))
-      .subscribe({
-        next: () => {
-          this.isTitleVisible ? this.titleService.setTitle('test') : this.titleService.setTitle(this.title);
-          this.isTitleVisible = !this.isTitleVisible;
-        }
-      })
+    // this.stopBlinking$.next();
+    // interval(1000)
+    //   .pipe(takeUntil(this.stopBlinking$))
+    //   .subscribe({
+    //     next: () => {
+    //       this.isTitleVisible ? this.titleService.setTitle('test') : this.titleService.setTitle(this.title);
+    //       this.isTitleVisible = !this.isTitleVisible;
+    //     }
+    //   })
   }
 
-  stopBlinkingTitle() {
-    this.stopBlinking$.next();
-    this.titleService.setTitle(this.title);
-  }
+  // stopBlinkingTitle() {
+  //   this.stopBlinking$.next();
+  //   this.titleService.setTitle(this.title);
+  // }
 
   addTodo(value: string): void {
-    this.todoApiService.postTodo({name: value, isComplete: false}).subscribe({
-      next: val => {
-        console.log(val)
-      },
-      error: err => {
-        this.errorMsg = 'Wystapil blad sproboj ponownie'
-      }
-    })
+    // this.todoApiService.postTodo({name: value, isComplete: false}).subscribe({
+    //   next: val => {
+    //     console.log(val)
+    //   },
+    //   error: err => {
+    //     this.errorMsg = 'Wystapil blad sproboj ponownie'
+    //   }
+    // })
   }
 
   clearErrorMSg() {
@@ -78,24 +78,24 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   deleteTodo(id: number) {
     // this.todoService.deleteTodo(id);
-    this.todoApiService.deleteTodo(id).subscribe({
-      error: err => {
-        this.errorMsg = 'Wystapil blad sproboj ponownie'
-      }
-    })
+    // this.todoApiService.deleteTodo(id).subscribe({
+    //   error: err => {
+    //     this.errorMsg = 'Wystapil blad sproboj ponownie'
+    //   }
+    // })
   }
 
   changeTodoStatus(id: number, todo: Todo) {
-    //this.todoService.changeTodoStatus(index);
-    this.todoApiService.patchTodo(id, {isComplete: !todo.isComplete}).subscribe({
-      error: err => {
-        this.errorMsg = 'Wystapil blad sproboj ponownie'
-      }
-  })
+  //   //this.todoService.changeTodoStatus(index);
+  //   this.todoApiService.patchTodo(id, {isComplete: !todo.isComplete}).subscribe({
+  //     error: err => {
+  //       this.errorMsg = 'Wystapil blad sproboj ponownie'
+  //     }
+  // })
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
-    this.stopBlinkingTitle();
+    // this.sub.unsubscribe();
+    //this.stopBlinkingTitle();
   }
 }
